@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Цех</title>
+</head>
+<body>
+<div>
+    <a th:href="@{/ceh}">Вернуться назад</a>
+</div>
+<br/>
+<hr/>
+<div align="center">
+    <p th:text="${'Идентификатор: ' + ceh.getId()}">VALUE</p>
+    <p th:text="${'Название: ' + ceh.getName()}">VALUE</p>
+    <br/>
+    <a th:href="@{/ceh/{id}/editceh(id=${ceh.getId()})}">Редактировать цех</a>
+
+    <form th:method="DELETE" th:action="@{/ceh/{id}(id=${ceh.getId()})}">
+        <input type="submit" value="Удалить цех"/>
+    </form>
+</div>
+</body>
+</html>
