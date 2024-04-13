@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый инструмент</title>
+</head>
+<body>
+
+<div>
+    <a th:href="@{/tool}">Вернуться назад</a>
+</div>
+<br/>
+<hr/>
+<div align="center">
+    <form th:method="POST" th:action="@{/tool}" th:object="${tool}">
+        <label for="name">Введите название: </label>
+        <input type="text" th:field="*{name}" id="name"/>
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+        <br/>
+        <label for="manufacturer">Введите изготовителя: </label>
+        <input type="text" th:field="*{manufacturer}" id="manufacturer"/>
+        <div style="color:red" th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}">Name Error</div>
+        <br/>
+        <input type="submit" value="Создать"/>
+    </form>
+</div>
+</body>
+</html>

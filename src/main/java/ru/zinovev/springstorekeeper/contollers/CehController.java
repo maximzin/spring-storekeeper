@@ -21,43 +21,43 @@ public class CehController {
     }
 
     @GetMapping()
-    public String cehAll(Model model) {
+    public String showAll(Model model) {
         model.addAttribute("cehs", cehService.findAll());
-        return "ceh/all";
+        return "showall";
     }
 
     @GetMapping("/{id}")
-    public String cehById(@PathVariable("id") int id, Model model) {
+    public String showOne(@PathVariable("id") int id, Model model) {
         model.addAttribute("ceh", cehService.findOne(id));
-        return "ceh/id";
+        return "showone";
     }
 
-    @GetMapping("/newceh")
+    @GetMapping("/new")
     public String newCeh(@ModelAttribute("ceh") Ceh ceh) {
-        return "ceh/newceh";
+        return "new";
     }
 
     @PostMapping()
     public String createCeh(@ModelAttribute("ceh") @Valid Ceh ceh,
                             BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "ceh/newceh";
+            return "new";
 
         cehService.saveCeh(ceh);
         return "redirect:/ceh";
     }
 
-    @GetMapping("/{id}/editceh")
+    @GetMapping("/{id}/edit")
     public String editCeh(Model model, @PathVariable("id") int id) {
         model.addAttribute("ceh", cehService.findOne(id));
-        return "ceh/editceh";
+        return "edit";
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("ceh") @Valid Ceh ceh, BindingResult bindingResult,
+    public String updateCeh(@ModelAttribute("ceh") @Valid Ceh ceh, BindingResult bindingResult,
                          @PathVariable("id") int id) {
         if (bindingResult.hasErrors())
-            return "ceh/editceh";
+            return "edit";
 
         cehService.updateCeh(id, ceh);
         return "redirect:/ceh/{id}";

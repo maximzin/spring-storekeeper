@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать цех</title>
+</head>
+<body>
+<div>
+    <a th:href="@{/ceh/{id}(id=${ceh.getId()})}">Вернуться назад</a>
+</div>
+<br/>
+<hr/>
+<div align="center">
+    <form th:method="PATCH" th:action="@{/ceh/{id}(id=${ceh.getId()})}" th:object="${ceh}">
+        <label for="name">Введите название: </label>
+        <input type="text" th:field="*{name}" id="name"/>
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+        <br/>
+        <input type="submit" value="Обновить"/>
+    </form>
+</div>
+</body>
+</html>

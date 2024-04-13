@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все цехи</title>
+</head>
+<body>
+
+<div>
+    <a th:href="@{/}">Вернуться назад</a>
+</div>
+<br/>
+<hr/>
+<div align="center" th:each="ceh : ${cehs}">
+    <a th:href="@{/ceh/{id}(id=${ceh.getId()})}"
+       th:text="${ceh.getName()}">ceh</a>
+</div>
+
+<br/>
+<hr/>
+<div align="center">
+    <a href="/ceh/new">Создать цех</a>
+</div>
+
+</body>
+</html>

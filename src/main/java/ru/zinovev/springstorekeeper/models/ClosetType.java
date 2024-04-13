@@ -35,7 +35,7 @@ public class ClosetType {
 
     @Min(value = 0, message = "На полке не может быть меньше 0 ячеек")
     @Max(value = 30, message = "На полке не может быть больше 30 ячеек")
-    @Column(name = "cells_for_shelves")
+    @Column(name = "cells_for_shelve")
     @Getter
     @Setter
     private int cellsForShelves;
