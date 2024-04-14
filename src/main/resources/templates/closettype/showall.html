@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Все цехи</title>
+    <title>Все типы шкафов</title>
 </head>
 <body>
 
@@ -11,15 +11,15 @@
 </div>
 <br/>
 <hr/>
-<div align="center" th:each="ceh : ${cehs}">
-    <a th:href="@{/ceh/{id}(id=${ceh.getId()})}"
-       th:text="${ceh.getName()}">ceh</a>
+<div align="center" th:each="closetType : ${closetTypes}">
+    <a th:href="@{/closettype/{id}(id=${closetType.getId()})}"
+       th:text="${closetType.getName()}">closetType</a>
 </div>
 
 <br/>
 <hr/>
 <div align="center">
-    <a href="/ceh/new">Создать цех</a>
+    <a href="/closettype/new">Создать новый тип</a>
 </div>
 
 </body>

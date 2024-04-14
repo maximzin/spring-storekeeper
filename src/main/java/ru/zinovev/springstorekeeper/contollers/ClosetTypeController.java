@@ -23,25 +23,25 @@ public class ClosetTypeController {
     @GetMapping()
     public String showAll(Model model) {
         model.addAttribute("closetTypes", closetTypeService.findAll());
-        return "showall";
+        return "closettype/showall";
     }
 
     @GetMapping("/{id}")
     public String showOne(@PathVariable("id") int id, Model model) {
         model.addAttribute("closetType", closetTypeService.findOne(id));
-        return "showone";
+        return "closettype/showone";
     }
 
     @GetMapping("/new")
     public String newClosetType(@ModelAttribute("closetType") ClosetType closetType) {
-        return "new";
+        return "closettype/new";
     }
 
     @PostMapping()
     public String createClosetType(@ModelAttribute("closetType") @Valid ClosetType closetType,
                             BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "new";
+            return "closettype/new";
 
         closetTypeService.saveClosetType(closetType);
         return "redirect:/closettype";
@@ -50,14 +50,14 @@ public class ClosetTypeController {
     @GetMapping("/{id}/edit")
     public String editClosetType(Model model, @PathVariable("id") int id) {
         model.addAttribute("closetType", closetTypeService.findOne(id));
-        return "edit";
+        return "closettype/edit";
     }
 
     @PatchMapping("/{id}")
     public String updateClosetType(@ModelAttribute("closetType") @Valid ClosetType closetType, BindingResult bindingResult,
                                    @PathVariable("id") int id) {
         if (bindingResult.hasErrors())
-            return "edit";
+            return "closettype/edit";
 
         closetTypeService.updateClosetType(id, closetType);
         return "redirect:/closettype/{id}";

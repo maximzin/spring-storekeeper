@@ -26,7 +26,6 @@ public class Closet {
     @Setter
     private String name;
 
-    @NotEmpty
     @Column(name = "id_type")
     @Getter
     @Setter
@@ -44,4 +43,17 @@ public class Closet {
         this.idType = idType;
         this.idCeh = idCeh;
     }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_type", referencedColumnName = "id", insertable=false, updatable=false)
+    @Getter
+    @Setter
+    private ClosetType closetType;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_ceh", referencedColumnName = "id", insertable=false, updatable=false)
+    @Getter
+    @Setter
+    private Ceh ceh;
+
 }

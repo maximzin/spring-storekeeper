@@ -38,10 +38,10 @@ public class ClosetType {
     @Column(name = "cells_for_shelve")
     @Getter
     @Setter
-    private int cellsForShelves;
+    private int cellsForShelve;
 
     @Min(value = 1, message = "Количество ячеек не может быть равно 0")
-    @Max(value = 30, message = "Количество ячеек более 1000")
+    @Max(value = 1001, message = "Количество ячеек более 1000")
     @Column(name = "capacity")
     @Getter
     @Setter
@@ -49,10 +49,10 @@ public class ClosetType {
 
     public ClosetType() {}
 
-    public ClosetType(String name, int shelves, int cellsForShelves, int capacity) {
+    public ClosetType(String name, int shelves, int cellsForShelve, int capacity) {
         this.name = name;
         this.shelves = shelves;
-        this.cellsForShelves = cellsForShelves;
+        this.cellsForShelve = cellsForShelve;
         this.capacity = capacity;
     }
 }

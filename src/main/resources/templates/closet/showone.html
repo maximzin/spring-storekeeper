@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Шкаф</title>
+</head>
+<body>
+<div>
+    <a th:href="@{/closet}">Вернуться назад</a>
+</div>
+<br/>
+<hr/>
+<div align="center">
+    <p th:text="${'Идентификатор: ' + closet.getId()}">VALUE</p>
+    <p th:text="${'Название: ' + closet.getName()}">VALUE</p>
+    <p th:text="${'Тип шкафа: ' + closet.closetType.getName()}">VALUE</p>
+    <p th:text="${'Цех: ' + closet.ceh.getName()}">VALUE</p>
+    <br/>
+    <a th:href="@{/closet/{id}/edit(id=${closet.getId()})}">Редактировать шкаф</a>
+
+    <form th:method="DELETE" th:action="@{/closet/{id}(id=${closet.getId()})}">
+        <input type="submit" value="Удалить шкаф"/>
+    </form>
+</div>
+</body>
+</html>

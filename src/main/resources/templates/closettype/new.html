@@ -2,20 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Новый цех</title>
+    <title>Новый тип</title>
 </head>
 <body>
 
 <div>
-    <a th:href="@{/ceh}">Вернуться назад</a>
+    <a th:href="@{/closettype}">Вернуться назад</a>
 </div>
 <br/>
 <hr/>
 <div align="center">
-    <form th:method="POST" th:action="@{/ceh}" th:object="${ceh}">
+    <form th:method="POST" th:action="@{/closettype}" th:object="${closetType}">
         <label for="name">Введите название: </label>
         <input type="text" th:field="*{name}" id="name"/>
         <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+        <br/>
+        <label for="shelves">Введите количество полок: </label>
+        <input type="text" th:field="*{shelves}" id="shelves"/>
+        <div style="color:red" th:if="${#fields.hasErrors('shelves')}" th:errors="*{shelves}">shelves Error</div>
+        <br/>
+        <label for="cellsForShelve">Введите количество ячеек на полку: </label>
+        <input type="text" th:field="*{cellsForShelve}" id="cellsForShelve"/>
+        <div style="color:red" th:if="${#fields.hasErrors('cellsForShelve')}" th:errors="*{cellsForShelve}">cellsForShelve Error</div>
+        <br/>
+        <label for="capacity">Введите общую вместимость: </label>
+        <input type="text" th:field="*{capacity}" id="capacity"/>
+        <div style="color:red" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}">capacity Error</div>
         <br/>
         <input type="submit" value="Создать"/>
     </form>

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Цех</title>
+    <title>Тип</title>
 </head>
 <body>
 <div>
@@ -11,13 +11,16 @@
 <br/>
 <hr/>
 <div align="center">
-    <p th:text="${'Идентификатор: ' + ceh.getId()}">VALUE</p>
-    <p th:text="${'Название: ' + ceh.getName()}">VALUE</p>
+    <p th:text="${'Идентификатор: ' + closetType.getId()}">VALUE</p>
+    <p th:text="${'Название: ' + closetType.getName()}">VALUE</p>
+    <p th:text="${'Количество полок: ' + closetType.getShelves()}">VALUE</p>
+    <p th:text="${'Количество ячеек на одну полку: ' + closetType.getCellsForShelve()}">VALUE</p>
+    <p th:text="${'Общая вместимость: ' + closetType.getCapacity()}">VALUE</p>
     <br/>
-    <a th:href="@{/ceh/{id}/editceh(id=${ceh.getId()})}">Редактировать цех</a>
+    <a th:href="@{/closettype/{id}/edit(id=${closetType.getId()})}">Редактировать тип</a>
 
-    <form th:method="DELETE" th:action="@{/ceh/{id}(id=${ceh.getId()})}">
-        <input type="submit" value="Удалить цех"/>
+    <form th:method="DELETE" th:action="@{/closettype/{id}(id=${closetType.getId()})}">
+        <input type="submit" value="Удалить тип"/>
     </form>
 </div>
 </body>

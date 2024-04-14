@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать шкаф</title>
+</head>
+<body>
+<div>
+    <a th:href="@{/closet/{id}(id=${closet.getId()})}">Вернуться назад</a>
+</div>
+<br/>
+<hr/>
+<div align="center">
+    <form th:method="PATCH" th:action="@{/closet/{id}(id=${closet.getId()})}" th:object="${closet}">
+        <label for="name">Введите название: </label>
+        <input type="text" th:field="*{name}" id="name"/>
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+        <br/>
+
+        <label for="type">Выберите тип: </label>
+        <select th:object="${closet}" th:field="*{idType}" id="type">
+            <option th:each="type : ${types}" th:value="${type.getId()}" th:text="${type.getName()}">
+            </option>
+        </select>
+        <br/>
+
+        <label for="ceh">Выберите цех: </label>
+        <select th:object="${closet}" th:field="*{idCeh}" id="ceh">
+            <option th:each="ceh : ${cehs}" th:value="${ceh.getId()}" th:text="${ceh.getName()}">
+            </option>
+        </select>
+        <br/>
+
+        <input type="submit" value="Обновить"/>
+    </form>
+</div>
+</body>
+</html>

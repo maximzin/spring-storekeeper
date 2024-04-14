@@ -15,7 +15,7 @@
     <p th:text="${'Название: ' + tool.getName()}">VALUE</p>
     <p th:text="${'Изготовитель: ' + tool.getManufacturer()}">VALUE</p>
     <br/>
-    <a th:href="@{/tool/{id}/edittool(id=${tool.getId()})}">Редактировать инструмент</a>
+    <a th:href="@{/tool/{id}/edit(id=${tool.getId()})}">Редактировать инструмент</a>
 
     <form th:method="DELETE" th:action="@{/tool/{id}(id=${tool.getId()})}">
         <input type="submit" value="Удалить инструмент"/>

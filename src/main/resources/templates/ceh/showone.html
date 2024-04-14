@@ -14,7 +14,7 @@
     <p th:text="${'Идентификатор: ' + ceh.getId()}">VALUE</p>
     <p th:text="${'Название: ' + ceh.getName()}">VALUE</p>
     <br/>
-    <a th:href="@{/ceh/{id}/editceh(id=${ceh.getId()})}">Редактировать цех</a>
+    <a th:href="@{/ceh/{id}/edit(id=${ceh.getId()})}">Редактировать цех</a>
 
     <form th:method="DELETE" th:action="@{/ceh/{id}(id=${ceh.getId()})}">
         <input type="submit" value="Удалить цех"/>
