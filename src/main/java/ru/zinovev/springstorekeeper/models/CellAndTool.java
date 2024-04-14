@@ -25,10 +25,16 @@ public class CellAndTool {
     @Setter
     private int idTool;
 
+    @Column(name = "count")
+    @Getter
+    @Setter
+    private int count;
+
     public CellAndTool() {}
 
-    public CellAndTool(int idCell, int idTool) {
+    public CellAndTool(int idCell, int idTool, int count) {
         this.idCell = idCell;
         this.idTool = idTool;
+        this.count = count;
     }
 }

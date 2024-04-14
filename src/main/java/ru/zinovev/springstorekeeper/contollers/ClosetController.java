@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.zinovev.springstorekeeper.models.Ceh;
 import ru.zinovev.springstorekeeper.models.Closet;
 import ru.zinovev.springstorekeeper.models.ClosetType;
+import ru.zinovev.springstorekeeper.models.Cell;
 import ru.zinovev.springstorekeeper.services.CehService;
+import ru.zinovev.springstorekeeper.services.CellService;
 import ru.zinovev.springstorekeeper.services.ClosetService;
 import ru.zinovev.springstorekeeper.services.ClosetTypeService;
 
@@ -23,11 +25,17 @@ public class ClosetController {
 
     private final CehService cehService;
 
+    private final CellService cellService;
+
     @Autowired
-    public ClosetController(ClosetService closetService, ClosetTypeService closetTypeService, CehService cehService) {
+    public ClosetController(ClosetService closetService,
+                            ClosetTypeService closetTypeService,
+                            CehService cehService,
+                            CellService cellService) {
         this.closetService = closetService;
         this.closetTypeService = closetTypeService;
         this.cehService = cehService;
+        this.cellService = cellService;
     }
 
     @GetMapping()
@@ -37,8 +45,11 @@ public class ClosetController {
     }
 
     @GetMapping("/{id}")
-    public String showOne(@PathVariable("id") int id, Model model) {
+    public String showOne(@PathVariable("id") int id,
+                          @ModelAttribute("cell") Cell cell,
+                          Model model) {
         model.addAttribute("closet", closetService.findOne(id));
+        model.addAttribute("cells", cellService.findByIdCloset(id));
         return "closet/showone";
     }
 
@@ -62,7 +73,9 @@ public class ClosetController {
 
     @GetMapping("/{id}/edit")
     public String editCloset(Model model, @ModelAttribute("closet") Closet closet,
-                             @ModelAttribute("type") ClosetType closetType, @ModelAttribute("ceh") Ceh ceh, @PathVariable("id") int id) {
+                             @ModelAttribute("type") ClosetType closetType,
+                             @ModelAttribute("ceh") Ceh ceh,
+                             @PathVariable("id") int id) {
         model.addAttribute("closet", closetService.findOne(id));
         model.addAttribute("types", closetTypeService.findAll());
         model.addAttribute("cehs", cehService.findAll());

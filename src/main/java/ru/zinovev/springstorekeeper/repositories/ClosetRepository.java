@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface ClosetRepository extends JpaRepository<Closet, Integer> {
-
     List<Closet> findByIdCehOrderByName(int id_ceh);
 
 }
