@@ -1,17 +1,18 @@
 package ru.zinovev.springstorekeeper.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import ru.zinovev.springstorekeeper.events.ClosetListener;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import ru.zinovev.springstorekeeper.repositories.CellRepository;
 
 @Entity
 @Table(name = "closet")
-@EntityListeners(ClosetListener.class)
+@Configurable
 public class Closet {
 
     @Getter

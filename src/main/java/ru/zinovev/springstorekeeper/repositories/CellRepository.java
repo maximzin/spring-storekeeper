@@ -11,4 +11,6 @@ public interface CellRepository extends JpaRepository<Cell, Integer> {
 
     List<Cell> findByIdClosetOrderByNumber(int id_closet);
 
+    void deleteByIdCloset(int id_closet);
+
 }

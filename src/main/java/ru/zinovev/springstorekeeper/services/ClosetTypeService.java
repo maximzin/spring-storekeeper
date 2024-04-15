@@ -47,5 +47,7 @@ public class ClosetTypeService {
         closetTypeRepository.deleteById(id);
     }
 
-
+    public int getCapacity(int id_type) {
+        return closetTypeRepository.findById(id_type).stream().findAny().get().getCapacity();
+    }
 }

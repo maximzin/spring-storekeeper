@@ -66,8 +66,8 @@ public class ClosetController {
                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "closet/new";
-
-        closetService.saveCloset(closet);
+        int capacity = closetTypeService.getCapacity(closet.getIdType());
+        closetService.saveCloset(closet, capacity);
         return "redirect:/closet";
     }
 

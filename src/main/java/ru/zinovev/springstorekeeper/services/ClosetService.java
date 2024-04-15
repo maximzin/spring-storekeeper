@@ -16,9 +16,13 @@ public class ClosetService {
 
     private final ClosetRepository closetRepository;
 
+    private final CellService cellService;
+
     @Autowired
-    public ClosetService(ClosetRepository closetRepository) {
+    public ClosetService(ClosetRepository closetRepository,
+                         CellService cellService) {
         this.closetRepository = closetRepository;
+        this.cellService = cellService;
     }
 
     public List<Closet> findByIdCeh(int id_ceh) {
@@ -35,8 +39,9 @@ public class ClosetService {
     }
 
     @Transactional
-    public void saveCloset(Closet closet) {
+    public void saveCloset(Closet closet, int capacity) {
         closetRepository.save(closet);
+        cellService.createCells(closet.getId(), capacity);
     }
 
     @Transactional
@@ -47,7 +52,8 @@ public class ClosetService {
 
     @Transactional
     public void deleteCloset(int id) {
+        cellService.deleteCells(id);
         closetRepository.deleteById(id);
     }
-    
+
 }

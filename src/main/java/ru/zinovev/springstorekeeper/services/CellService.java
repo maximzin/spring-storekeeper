@@ -14,9 +14,6 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class CellService {
 
-    @Autowired
-    private EntityManager entityManager;
-
     private final CellRepository cellRepository;
 
     @Autowired
@@ -48,10 +45,20 @@ public class CellService {
         cellRepository.save(updatedCell);
     }
 
+
+
     @Transactional
-    public void deleteCell(int id) {
-        cellRepository.deleteById(id);
+    public void createCells(int id_closet, int count) {
+        for (int i = 1; i <= count; i++) {
+            Cell cell = new Cell(id_closet, i);
+            // Настройте связанные сущности, если необходимо
+            cellRepository.save(cell);
+        }
     }
 
+    @Transactional
+    public void deleteCells(int id_closet) {
+        cellRepository.deleteByIdCloset(id_closet);
+    }
 
 }
