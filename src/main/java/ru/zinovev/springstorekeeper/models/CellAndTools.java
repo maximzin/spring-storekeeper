@@ -29,6 +29,7 @@ public class CellAndTools {
     @Getter
     @Setter
     private int count;
+    КЛЮЧИ НАЛОР
 
     public CellAndTools() {}
 
