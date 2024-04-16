@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "cells_and_tools")
-public class CellAndTool {
+public class CellAndTools {
 
     @Id
     @Column(name = "id")
@@ -30,11 +30,17 @@ public class CellAndTool {
     @Setter
     private int count;
 
-    public CellAndTool() {}
+    public CellAndTools() {}
 
-    public CellAndTool(int idCell, int idTool, int count) {
+    public CellAndTools(int idCell, int idTool, int count) {
         this.idCell = idCell;
         this.idTool = idTool;
         this.count = count;
     }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_tool", referencedColumnName = "id", insertable=false, updatable=false)
+    @Getter
+    @Setter
+    private Tool tool;
 }

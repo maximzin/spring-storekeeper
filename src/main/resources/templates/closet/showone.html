@@ -20,7 +20,7 @@
 
     <br/>
     <div th:each="i : ${#numbers.sequence(1, closet.getClosetType().getCapacity())}">
-        <a th:text="'Ссылка ' + ${i}" th:href="@{'/some/url/' + ${i}}">Ссылка</a>
+        <a th:text="'Ссылка ' + ${i}" th:href="@{/closet/{id}/cell/{num_cell}(id=${closet.getId()}, num_cell=${i})}">Ссылка</a>
     </div>
     <br/>
 

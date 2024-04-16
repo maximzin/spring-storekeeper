@@ -29,9 +29,9 @@ public class CellService {
         return cellRepository.findAll();
     }
 
-    public Cell findOne(int id) {
-        Optional<Cell> foundCell = cellRepository.findById(id);
-        return foundCell.orElse(null);
+    public Cell findOne(int id_closet, int number) {
+        List<Cell> foundCell = cellRepository.findByIdClosetAndNumber(id_closet, number);
+        return foundCell.stream().findAny().get();
     }
 
     @Transactional

@@ -6,14 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.zinovev.springstorekeeper.models.Ceh;
-import ru.zinovev.springstorekeeper.models.Closet;
-import ru.zinovev.springstorekeeper.models.ClosetType;
-import ru.zinovev.springstorekeeper.models.Cell;
-import ru.zinovev.springstorekeeper.services.CehService;
-import ru.zinovev.springstorekeeper.services.CellService;
-import ru.zinovev.springstorekeeper.services.ClosetService;
-import ru.zinovev.springstorekeeper.services.ClosetTypeService;
+import ru.zinovev.springstorekeeper.models.*;
+import ru.zinovev.springstorekeeper.services.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/closet")
@@ -27,15 +24,23 @@ public class ClosetController {
 
     private final CellService cellService;
 
+    private final CellAndToolsService cellAndToolsService;
+
+    private final ToolService toolService;
+
     @Autowired
     public ClosetController(ClosetService closetService,
                             ClosetTypeService closetTypeService,
                             CehService cehService,
-                            CellService cellService) {
+                            CellService cellService,
+                            CellAndToolsService cellAndToolsService,
+                            ToolService toolService) {
         this.closetService = closetService;
         this.closetTypeService = closetTypeService;
         this.cehService = cehService;
         this.cellService = cellService;
+        this.cellAndToolsService = cellAndToolsService;
+        this.toolService = toolService;
     }
 
     @GetMapping()
@@ -46,7 +51,7 @@ public class ClosetController {
 
     @GetMapping("/{id}")
     public String showOne(@PathVariable("id") int id,
-                          @ModelAttribute("cell") Cell cell,
+                          @ModelAttribute("cell") Optional<Cell> cell,
                           Model model) {
         model.addAttribute("closet", closetService.findOne(id));
         model.addAttribute("cells", cellService.findByIdCloset(id));
@@ -97,5 +102,46 @@ public class ClosetController {
         closetService.deleteCloset(id);
         return "redirect:/closet";
     }
-    
+
+    //Далее идёт функционал конкретных ячеек
+    @GetMapping("/{id}/cell/{num_cell}")
+    public String showOneCell(Model model,
+                              @PathVariable("id") int id,
+                              @PathVariable("num_cell") int num_cell,
+                              @ModelAttribute("cellAndTool") CellAndTools cellAndTools) {
+        model.addAttribute("closet", closetService.findOne(id));
+        //model.addAttribute(cellService.findByIdCloset(id));
+        Cell needCell = cellService.findOne(id, num_cell);
+        model.addAttribute("cellAndTools", cellAndToolsService.findByIdCell(needCell.getId()));
+        return "closet/showcell";
+    }
+
+    @DeleteMapping("/{id}/cell/{id_cell}")
+    public String deleteCellAndTool(@PathVariable("id") int id,
+                                    @PathVariable("id_cell") int id_cell) {
+        cellAndToolsService.deleteCellAndTools(id_cell);
+        return "redirect:/closet/{id}";
+    }
+
+    @GetMapping("/{id}/cell/{num_cell}/addtool")
+    public String newToolToCell(Model model,
+                                @PathVariable("id") int id,
+                                @PathVariable("num_cell") int num_cell,
+                                @ModelAttribute("cellAndTools") CellAndTools cellAndTools,
+                                @ModelAttribute("tool") Tool tool) {
+        model.addAttribute("cell", cellService.findOne(id, num_cell));
+        model.addAttribute("tools", toolService.findAll());
+        return "closet/addtool";
+    }
+
+    @PostMapping("/{id}/cell/{num_cell}/addtool")
+    public String addToolToCell(@PathVariable("id") int id,
+                                @PathVariable("num_cell") int num_cell,
+                                @ModelAttribute("cellAndTools") @Valid CellAndTools cellAndTools,
+                             BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "closet/addtool";
+        cellAndToolsService.saveCellAndTools(cellAndTools);
+        return "redirect:/closet/{id}";
+    }
 }

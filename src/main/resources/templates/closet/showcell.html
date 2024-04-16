@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все шкафы</title>
+</head>
+<body>
+
+<div>
+    <a th:href="@{/closet/{id}(id=${closet.getId()})}">Вернуться назад</a>
+</div>
+<br/>
+<hr/>
+
+<div align="center">
+    <table>
+        <thead class="thead-dark">
+        <tr>
+            <th>Инструмент</th>
+            <th>Количество</th>
+            <th>Фукнция</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cellAndTool : ${cellAndTools}">
+            <td th:text="${cellAndTool.getTool().getName()}">Value</td>
+            <td th:text="${cellAndTool.getCount()}">Value</td>
+            <td><form th:method="DELETE" th:action="@{/closet/{id}/cell/{id_cell}(id=${closet.getId()}, id_cell=${cellAndTool.getId()})}">
+                <input type="submit" value="Удалить"/>
+            </form></td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <a th:href="@{/closet/{id}/cell/{num_cell}/addtool(id=${id}, num_cell=${num_cell})}">Добавить инструмент</a>
+</div>
+
+
+
+</body>
+</html>

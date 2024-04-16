@@ -13,4 +13,6 @@ public interface CellRepository extends JpaRepository<Cell, Integer> {
 
     void deleteByIdCloset(int id_closet);
 
+    List<Cell> findByIdClosetAndNumber(int id_closet, int number);
+
 }
