@@ -47,13 +47,13 @@ public class Closet {
         this.idCeh = idCeh;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "id_type", referencedColumnName = "id", insertable=false, updatable=false)
     @Getter
     @Setter
     private ClosetType closetType;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "id_ceh", referencedColumnName = "id", insertable=false, updatable=false)
     @Getter
     @Setter

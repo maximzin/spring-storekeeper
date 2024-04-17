@@ -52,7 +52,6 @@ public class ClosetService {
 
     @Transactional
     public void deleteCloset(int id) {
-        cellService.deleteCells(id);
         closetRepository.deleteById(id);
     }
 

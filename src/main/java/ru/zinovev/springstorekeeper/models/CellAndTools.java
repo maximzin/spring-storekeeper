@@ -29,7 +29,7 @@ public class CellAndTools {
     @Getter
     @Setter
     private int count;
-    КЛЮЧИ НАДО
+
 
     public CellAndTools() {}
 
@@ -39,7 +39,7 @@ public class CellAndTools {
         this.count = count;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "id_tool", referencedColumnName = "id", insertable=false, updatable=false)
     @Getter
     @Setter
