@@ -19,16 +19,23 @@
     <a th:href="@{/closet/{id}/edit(id=${closet.getId()})}">Редактировать шкаф</a>
 
     <br/>
-    <div th:each="i : ${#numbers.sequence(1, closet.getClosetType().getCapacity())}">
-        <a th:text="'Ссылка ' + ${i}" th:href="@{/closet/{id}/cell/{num_cell}(id=${closet.getId()}, num_cell=${i})}">Ссылка</a>
-    </div>
+    <table>
+        <tbody>
+        <tr th:each="iShelf : ${#numbers.sequence(1, closet.getClosetType().getShelves())}">
+            <td th:each="iCell : ${#numbers.sequence(1, closet.getClosetType().getCellsForShelve())}">
+                <div th:each="cellOne : ${cells}" th:if="${cellOne.getNumber()} == ${cellOne.getNumByPosition(closet.getClosetType().getCellsForShelve(), iShelf, iCell)}">
+                    <a th:text="'Ячейка ' + ${cellOne.getNumber()}" th:href="@{/closet/{id}/cell/{num_cell}(id=${closet.getId()}, num_cell=${cellOne.getNumber()})}">Ссылка</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
     <br/>
-
-
-
     <form th:method="DELETE" th:action="@{/closet/{id}(id=${closet.getId()})}">
         <input type="submit" value="Удалить шкаф"/>
     </form>
 </div>
+
+
 </body>
 </html>

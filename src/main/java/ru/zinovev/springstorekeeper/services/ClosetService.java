@@ -3,6 +3,7 @@ package ru.zinovev.springstorekeeper.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.zinovev.springstorekeeper.models.Cell;
 import ru.zinovev.springstorekeeper.models.Closet;
 import ru.zinovev.springstorekeeper.models.Tool;
 import ru.zinovev.springstorekeeper.repositories.ClosetRepository;

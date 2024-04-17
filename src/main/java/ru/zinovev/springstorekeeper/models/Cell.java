@@ -31,4 +31,9 @@ public class Cell {
         this.idCloset = idCloset;
         this.number = number;
     }
+
+    //Метод нужен для понимания, какой номер ячейки забит в таблице
+    public int getNumByPosition(int cellsInShelf, int shelfNeed, int cellNeed) {
+        return (shelfNeed * cellsInShelf - cellsInShelf + cellNeed);
+    }
 }
