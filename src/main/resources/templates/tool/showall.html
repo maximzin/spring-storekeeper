@@ -3,24 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Весь инструмент</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 
-<div>
-    <a th:href="@{/}">Вернуться назад</a>
-</div>
-<br/>
-<hr/>
-<div align="center" th:each="tool : ${tools}">
-    <a th:href="@{/tool/{id}(id=${tool.getId()})}"
-       th:text="${tool.getName()}">tool</a>
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <div>
+        <a th:href="@{/}">Вернуться назад</a>
+    </div>
+    <br/>
+    <div th:each="tool : ${tools}">
+        <a th:href="@{/tool/{id}(id=${tool.getId()})}"
+           th:text="${tool.getName()}">tool</a>
+    </div>
+    <br/>
+    <div>
+        <a href="/tool/new">Создать инструмент</a>
+    </div>
 </div>
 
-<br/>
-<hr/>
-<div align="center">
-    <a href="/tool/new">Создать инструмент</a>
-</div>
+<footer th:replace="~{base :: footer}"></footer>
+
 
 </body>
 </html>

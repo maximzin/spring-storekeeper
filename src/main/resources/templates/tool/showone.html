@@ -3,23 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Инструмент</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<div>
-    <a th:href="@{/tool}">Вернуться назад</a>
-</div>
-<br/>
-<hr/>
-<div align="center">
-    <p th:text="${'Идентификатор: ' + tool.getId()}">VALUE</p>
-    <p th:text="${'Название: ' + tool.getName()}">VALUE</p>
-    <p th:text="${'Изготовитель: ' + tool.getManufacturer()}">VALUE</p>
-    <br/>
-    <a th:href="@{/tool/{id}/edit(id=${tool.getId()})}">Редактировать инструмент</a>
 
-    <form th:method="DELETE" th:action="@{/tool/{id}(id=${tool.getId()})}">
-        <input type="submit" value="Удалить инструмент"/>
-    </form>
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <div>
+        <a th:href="@{/tool}">Вернуться назад</a>
+    </div>
+    <br/>
+    <div>
+        <p th:text="${'Идентификатор: ' + tool.getId()}">VALUE</p>
+        <p th:text="${'Название: ' + tool.getName()}">VALUE</p>
+        <p th:text="${'Изготовитель: ' + tool.getManufacturer()}">VALUE</p>
+        <br/>
+        <a th:href="@{/tool/{id}/edit(id=${tool.getId()})}">Редактировать инструмент</a>
+
+        <form th:method="DELETE" th:action="@{/tool/{id}(id=${tool.getId()})}">
+            <input type="submit" value="Удалить инструмент"/>
+        </form>
+    </div>
 </div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+
 </body>
 </html>

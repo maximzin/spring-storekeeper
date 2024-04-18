@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class BaseController {
+public class MainPageController {
 
     @GetMapping()
     public String begin() {
-        return "base";
+        return "mainpage";
     }
 
 }

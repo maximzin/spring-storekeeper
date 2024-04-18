@@ -2,25 +2,34 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Все ДСЕ</title>
+    <title>база</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+<div class="content-wrapper">
+    <header th:fragment="header">
+        <div class="logo">
+            <img src="/img/logo1.png" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/ceh">Список цехов</a></li>
+                <li><a href="/closet">Список шкафов</a></li>
+                <li><a href="/closettype">Типы шкафов</a></li>
+                <li><a href="/tool">Инструмент</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<div align="center">
-    <a href="/ceh">Список цехов</a>
-</div>
-<br/>
-<div align="center">
-    <a href="/closet">Список шкафов</a>
-</div>
-<br/>
-<div align="center">
-    <a href="/closettype">Типы шкафов</a>
-</div>
-<br/>
-<div align="center">
-    <a href="/tool">Инструмент</a>
-</div>
+    <div class="mainContent" th:block="content">
+        <!-- Здесь будет содержимое страниц, которые наследуются -->
+    </div>
 
+    <footer th:fragment="footer">
+        <div class="footer-container">
+            <p>2024 Maxim Zinoviev</p>
+        </div>
+    </footer>
+</div>
 </body>
 </html>

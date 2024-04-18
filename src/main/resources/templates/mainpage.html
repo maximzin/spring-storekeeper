@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:extend="~{base}">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <h1>Добро пожаловать!</h1>
+</div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+</body>
+</html>
