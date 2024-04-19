@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #fffaf5;
+    background-color: #ededed;
 }
 
 .content-wrapper {
@@ -18,7 +18,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background: linear-gradient(45deg, #606060, #676767);
     color: #fff;
     font-family: Arial, sans-serif;
     height: 68px;
@@ -38,6 +38,7 @@ nav {
     flex-grow: 1;
     position: absolute;
     width: 100%;
+    font-size: 16px;
 }
 
 nav ul {
@@ -80,9 +81,47 @@ footer {
 .mainContent {
     font-size: 20px;
     text-align: center;
-    font-family: Arial, sans-serif;
+    font-family: sans-serif;
     color: #2c2c2c;
     text-decoration: none;
     flex-grow: 1;
     padding: 2rem;
 }
+
+.mainContent a {
+    color: #2c2c2c;
+    text-decoration: none;
+}
+
+.mainContent a:hover {
+    color: #fff; /* Цвет текста */
+    background: #008; /* Цвет фона */
+}
+
+.titleMainContent {
+    width: 100px;
+}
+
+.titleMainContent p {
+    width: 100px;
+}
+
+.buttonNav {
+    width: 100px;
+}
+
+.centerContent {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 18px solid cornflowerblue;
+    border-style: inset;
+    border-radius: 30px;
+}
+
+.buttonEdit {
+    width: 200px;
+}
+
+
+

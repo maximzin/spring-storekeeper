@@ -10,18 +10,27 @@
 <header th:replace="~{base :: header}"></header>
 
 <div class="mainContent" th:block="content">
-    <div>
-        <a th:href="@{/}">Вернуться назад</a>
+    <div class="titleMainContent">
+        <p>Инструмент</p>
     </div>
-    <br/>
-    <div th:each="tool : ${tools}">
-        <a th:href="@{/tool/{id}(id=${tool.getId()})}"
-           th:text="${tool.getName()}">tool</a>
+    <div class="centerContent">
+        <div class="buttonNav">
+            <a th:href="@{/}">Вернуться назад</a>
+        </div>
+        <br/>
+
+        <div th:each="tool : ${tools}">
+            <a th:href="@{/tool/{id}(id=${tool.getId()})}"
+               th:text="${tool.getName()}">tool</a>
+        </div>
+        <br/>
+        <div class="buttonEdit">
+            <a href="/tool/new">Создать инструмент</a>
+        </div>
     </div>
-    <br/>
-    <div>
-        <a href="/tool/new">Создать инструмент</a>
-    </div>
+
+
+
 </div>
 
 <footer th:replace="~{base :: footer}"></footer>
