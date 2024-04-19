@@ -19,7 +19,7 @@
         </div>
         <br/>
 
-        <div th:each="tool : ${tools}">
+        <div class="listContent" th:each="tool : ${tools}">
             <a th:href="@{/tool/{id}(id=${tool.getId()})}"
                th:text="${tool.getName()}">tool</a>
         </div>

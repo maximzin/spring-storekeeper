@@ -59,7 +59,7 @@ nav ul li a {
 
 /* Стили для футера */
 footer {
-    background-color: #333;
+    background: linear-gradient(45deg, #606060, #676767);
     text-align: center;
     font-family: Arial, sans-serif;
     position: fixed;
@@ -85,7 +85,6 @@ footer {
     color: #2c2c2c;
     text-decoration: none;
     flex-grow: 1;
-    padding: 2rem;
 }
 
 .mainContent a {
@@ -99,12 +98,14 @@ footer {
 }
 
 .titleMainContent {
-    width: 100px;
+    width: 300px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.titleMainContent p {
-    width: 100px;
-}
 
 .buttonNav {
     width: 100px;
@@ -114,14 +115,20 @@ footer {
     width: 600px;
     margin-left: auto;
     margin-right: auto;
-    border: 18px solid cornflowerblue;
-    border-style: inset;
-    border-radius: 30px;
+    border: 14px solid #9ebef6;
+    border-radius: 20px;
+    background-color: white;
 }
 
 .buttonEdit {
     width: 200px;
 }
 
+.listContent {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
 
 
