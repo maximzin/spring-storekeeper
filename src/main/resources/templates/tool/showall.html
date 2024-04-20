@@ -17,12 +17,28 @@
         <div class="buttonNav">
             <a th:href="@{/}">Вернуться назад</a>
         </div>
-        <br/>
-
-        <div class="listContent" th:each="tool : ${tools}">
-            <a th:href="@{/tool/{id}(id=${tool.getId()})}"
-               th:text="${tool.getName()}">tool</a>
+        <div class="listContent">
+        <table class="tableMain">
+            <thead class="tableHead">
+            <tr>
+                <th>No.</th>
+                <th>Обозначение</th>
+                <th>Производитель</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody class="tableBody">
+            <tr th:each="tool, countTool : ${tools}">
+                <td th:text="${countTool.count}">Value</td>
+                <td th:text="${tool.getName()}">Value</td>
+                <td th:text="${tool.getManufacturer()}">Value</td>
+                <td><a th:href="@{/tool/{id}(id=${tool.getId()})}"
+                       th:text="Редактировать">tool</a></td>
+            </tr>
+            </tbody>
+        </table>
         </div>
+
         <br/>
         <div class="buttonEdit">
             <a href="/tool/new">Создать инструмент</a>

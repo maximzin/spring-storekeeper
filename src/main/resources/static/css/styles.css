@@ -90,11 +90,16 @@ footer {
 .mainContent a {
     color: #2c2c2c;
     text-decoration: none;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    padding: 2px;
 }
 
 .mainContent a:hover {
-    color: #fff; /* Цвет текста */
-    background: #008; /* Цвет фона */
+    color: #ffffff;
+    background: #246ff5b8;
+    border-radius: 6px;
+    padding: 2px;
 }
 
 .titleMainContent {
@@ -108,27 +113,74 @@ footer {
 
 
 .buttonNav {
-    width: 100px;
+    width: 130px;
+    padding: 6px;
+    border: 6px solid #0000001c;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 15px;
 }
 
 .centerContent {
     width: 600px;
     margin-left: auto;
     margin-right: auto;
-    border: 20px solid #2854a238;
-    border-radius: 20px;
+    border: 14px solid #2854a238;
+    border-radius: 34px;
     background-color: white;
 }
 
 .buttonEdit {
     width: 200px;
+    padding: 6px;
+    border: 6px solid #0000001c;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .listContent {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+    font-size: 18px;
+}
+
+.tableMain {
     width: 300px;
     margin-left: auto;
     margin-right: auto;
-    text-align: left;
+    padding: 5px;
+    border: 5px solid;
+    border-collapse: collapse;
 }
+
+.tableHead {
+    width: 200px;
+}
+
+.tableBody {
+    width: 400px;
+}
+
+.tableMain tr {
+    width: 200px;
+    border-bottom: 5px solid;
+}
+
+.tableMain td {
+    padding: 4px;
+    border-right: 5px solid;
+}
+
+.tableMain th {
+    width: 200px;
+    text-align: center;
+    border-right: 5px solid;
+}
+
 
 
