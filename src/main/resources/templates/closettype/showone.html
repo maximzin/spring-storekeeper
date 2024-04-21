@@ -14,7 +14,7 @@
     <p th:text="${'Идентификатор: ' + closetType.getId()}">VALUE</p>
     <p th:text="${'Название: ' + closetType.getName()}">VALUE</p>
     <p th:text="${'Количество полок: ' + closetType.getShelves()}">VALUE</p>
-    <p th:text="${'Количество ячеек на одну полку: ' + closetType.getCellsForShelve()}">VALUE</p>
+    <p th:text="${'Количество ячеек на одну полку: ' + closetType.getCellsForShelf()}">VALUE</p>
     <p th:text="${'Общая вместимость: ' + closetType.getCapacity()}">VALUE</p>
     <br/>
     <a th:href="@{/closettype/{id}/edit(id=${closetType.getId()})}">Редактировать тип</a>

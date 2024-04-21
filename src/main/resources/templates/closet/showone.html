@@ -22,8 +22,8 @@
     <table>
         <tbody>
         <tr th:each="iShelf : ${#numbers.sequence(1, closet.getClosetType().getShelves())}">
-            <td th:each="iCell : ${#numbers.sequence(1, closet.getClosetType().getCellsForShelve())}">
-                <div th:each="cellOne : ${cells}" th:if="${cellOne.getNumber()} == ${cellOne.getNumByPosition(closet.getClosetType().getCellsForShelve(), iShelf, iCell)}">
+            <td th:each="iCell : ${#numbers.sequence(1, closet.getClosetType().getCellsForShelf())}">
+                <div th:each="cellOne : ${cells}" th:if="${cellOne.getNumber()} == ${cellOne.getNumByPosition(closet.getClosetType().getCellsForShelf(), iShelf, iCell)}">
                     <a th:text="'Ячейка ' + ${cellOne.getNumber()}" th:href="@{/closet/{id}/cell/{num_cell}(id=${closet.getId()}, num_cell=${cellOne.getNumber()})}">Ссылка</a>
                 </div>
             </td>

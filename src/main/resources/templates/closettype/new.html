@@ -21,9 +21,9 @@
         <input type="text" th:field="*{shelves}" id="shelves"/>
         <div style="color:red" th:if="${#fields.hasErrors('shelves')}" th:errors="*{shelves}">shelves Error</div>
         <br/>
-        <label for="cellsForShelve">Введите количество ячеек на полку: </label>
-        <input type="text" th:field="*{cellsForShelve}" id="cellsForShelve"/>
-        <div style="color:red" th:if="${#fields.hasErrors('cellsForShelve')}" th:errors="*{cellsForShelve}">cellsForShelve Error</div>
+        <label for="cellsForShelf">Введите количество ячеек на полку: </label>
+        <input type="text" th:field="*{cellsForShelf}" id="cellsForShelf"/>
+        <div style="color:red" th:if="${#fields.hasErrors('cellsForShelf')}" th:errors="*{getCellsForShelf}">cellsForShelf Error</div>
         <br/>
         <label for="capacity">Введите общую вместимость: </label>
         <input type="text" th:field="*{capacity}" id="capacity"/>
