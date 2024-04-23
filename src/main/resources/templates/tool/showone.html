@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Инструмент</title>
+    <title>Страница инструмента</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -10,20 +10,42 @@
 <header th:replace="~{base :: header}"></header>
 
 <div class="mainContent" th:block="content">
-    <div>
-        <a th:href="@{/tool}">Вернуться назад</a>
+    <div class="titleMainContent">
+        <p>Страница инструмента</p>
     </div>
-    <br/>
-    <div>
-        <p th:text="${'Идентификатор: ' + tool.getId()}">VALUE</p>
-        <p th:text="${'Название: ' + tool.getName()}">VALUE</p>
-        <p th:text="${'Изготовитель: ' + tool.getManufacturer()}">VALUE</p>
-        <br/>
-        <a th:href="@{/tool/{id}/edit(id=${tool.getId()})}">Редактировать инструмент</a>
 
-        <form th:method="DELETE" th:action="@{/tool/{id}(id=${tool.getId()})}">
-            <input type="submit" value="Удалить инструмент"/>
-        </form>
+    <div class="centerContent">
+        <div class="buttonNav">
+            <a th:href="@{/tool}">Вернуться назад</a>
+        </div>
+
+        <div class="listContent">
+
+            <table class="tableMain">
+                <tbody class="tableBody">
+                <tr>
+                    <td th:text="${'Идентификатор:'}">VALUE</td>
+                    <td th:text="${tool.getId()}">Value</td>
+                </tr>
+                <tr>
+                    <td th:text="${'Название:'}">VALUE</td>
+                    <td th:text="${tool.getName()}">Value</td>
+                </tr>
+                <tr>
+                    <td th:text="${'Изготовитель:'}">VALUE</td>
+                    <td th:text="${tool.getManufacturer()}">Value</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="buttonEdit">
+            <a th:href="@{/tool/{id}/edit(id=${tool.getId()})}">Редактировать инструмент</a>
+            <hr>
+            <form th:method="DELETE" th:action="@{/tool/{id}(id=${tool.getId()})}">
+                <input class="formButton" type="submit" value="Удалить инструмент"/>
+            </form>
+        </div>
     </div>
 </div>
 

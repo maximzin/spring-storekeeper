@@ -11,7 +11,7 @@
 
 <div class="mainContent" th:block="content">
     <div class="titleMainContent">
-        <p>Инструмент</p>
+        <p>Весь инструмент</p>
     </div>
     <div class="centerContent">
         <div class="buttonNav">
@@ -23,7 +23,6 @@
             <tr>
                 <th>No.</th>
                 <th>Обозначение</th>
-                <th>Производитель</th>
                 <th>Действия</th>
             </tr>
             </thead>
@@ -31,15 +30,13 @@
             <tr th:each="tool, countTool : ${tools}">
                 <td th:text="${countTool.count}">Value</td>
                 <td th:text="${tool.getName()}">Value</td>
-                <td th:text="${tool.getManufacturer()}">Value</td>
                 <td><a th:href="@{/tool/{id}(id=${tool.getId()})}"
-                       th:text="Редактировать">tool</a></td>
+                       th:text="Подробнее">tool</a></td>
             </tr>
             </tbody>
         </table>
         </div>
 
-        <br/>
         <div class="buttonEdit">
             <a href="/tool/new">Создать инструмент</a>
         </div>

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Новый инструмент</title>
+    <title>Создание инструмента</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -10,23 +10,33 @@
 <header th:replace="~{base :: header}"></header>
 
 <div class="mainContent" th:block="content">
-    <div>
-        <a th:href="@{/tool}">Вернуться назад</a>
+    <div class="titleMainContent">
+        <p>Создание инструмента</p>
     </div>
-    <br/>
-    <hr/>
-    <div>
-        <form th:method="POST" th:action="@{/tool}" th:object="${tool}">
-            <label for="name">Введите название: </label>
-            <input type="text" th:field="*{name}" id="name"/>
-            <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
-            <br/>
-            <label for="manufacturer">Введите изготовителя: </label>
-            <input type="text" th:field="*{manufacturer}" id="manufacturer"/>
-            <div style="color:red" th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}">Name Error</div>
-            <br/>
-            <input type="submit" value="Создать"/>
-        </form>
+
+    <div class="centerContent">
+        <div class="buttonNav">
+            <a th:href="@{/tool}">Вернуться назад</a>
+        </div>
+
+        <div class="listContent">
+            <form th:method="POST" th:action="@{/tool}" th:object="${tool}">
+                <div class="formLine">
+                <label class="formLabel" for="name">Введите название: </label>
+                <input class="formInputText" type="text" th:field="*{name}" id="name"/>
+                <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                </div>
+
+                <div class="formLine">
+                <label class="formLabel" for="manufacturer">Введите изготовителя: </label>
+                <input class="formInputText" type="text" th:field="*{manufacturer}" id="manufacturer"/>
+                <div style="color:red" th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}">Name Error</div>
+                </div>
+
+                <div class="buttonEdit">
+                <input class="formButton" type="submit" value="Создать"/>
+                </div>
+            </form>
     </div>
 </div>
 
