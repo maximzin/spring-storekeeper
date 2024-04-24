@@ -18,7 +18,7 @@
         <br/>
 
         <label for="type">Выберите тип: </label>
-        <select th:object="${closet}" th:field="*{idType}" id="type">
+        <select disabled th:object="${closet}" th:field="*{idType}" id="type">
             <option th:each="type : ${types}" th:value="${type.getId()}" th:text="${type.getName()}">
             </option>
         </select>

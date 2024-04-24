@@ -38,9 +38,9 @@
         <div class="buttonEdit">
             <a th:href="@{/ceh/{id}/edit(id=${ceh.getId()})}">Редактировать тип</a>
             <hr>
-            <button class="formButton">Удалить цех</button>
+            <button id="btnPressed" class="formButton">Удалить цех</button>
             <form class="formHidden" th:method="DELETE" th:action="@{/ceh/{id}(id=${ceh.getId()})}">
-                <input class="formButtonHidden" type="submit" value="Удалить цех"/>
+                <input id="btnHidden" class="formButtonHidden" type="submit" value="Удалить цех"/>
             </form>
         </div>
     </div>

@@ -41,7 +41,7 @@
 
                 <div class="formLine">
                     <label class="formLabel" for="capacity">Общая вместимость: (на данный момент должна быть равна произведению количества полок на количество ячеек) </label>
-                    <input class="formInputText" type="text" th:field="*{capacity}" id="capacity"/>
+                    <input readonly class="formInputText" type="text" th:field="*{capacity}" id="capacity"/>
                     <div style="color:red" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}">capacity Error</div>
                 </div>
 
