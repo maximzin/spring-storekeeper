@@ -29,13 +29,13 @@
 
                 <div class="formLine">
                     <label class="formLabel" for="shelves">Количество полок: </label>
-                    <input class="formInputText" type="text" th:field="*{shelves}" id="shelves"/>
+                    <input class="formInputText" type="text" th:field="*{shelves}" id="shelves" oninput="calculate()"/>
                     <div style="color:red" th:if="${#fields.hasErrors('shelves')}" th:errors="*{shelves}">Shelves Error</div>
                 </div>
 
                 <div class="formLine">
                     <label class="formLabel" for="cellsForShelf">Количество ячеек на полку: </label>
-                    <input class="formInputText" type="text" th:field="*{cellsForShelf}" id="cellsForShelf"/>
+                    <input class="formInputText" type="text" th:field="*{cellsForShelf}" id="cellsForShelf" oninput="calculate()"/>
                     <div style="color:red" th:if="${#fields.hasErrors('cellsForShelf')}" th:errors="*{getCellsForShelf}">CellsForShelf Error</div>
                 </div>
 
@@ -54,6 +54,8 @@
 </div>
 
 <footer th:replace="~{base :: footer}"></footer>
+
+<script type="text/javascript" th:src="@{/js/closetCapacity.js}"></script>
 
 </body>
 </html>
