@@ -24,15 +24,15 @@
             <table class="tableMain">
                 <tbody class="tableBody">
                 <tr>
-                    <td th:text="${'Идентификатор:'}">VALUE</td>
+                    <td class="tdName" th:text="${'Идентификатор:'}">VALUE</td>
                     <td th:text="${tool.getId()}">Value</td>
                 </tr>
                 <tr>
-                    <td th:text="${'Название:'}">VALUE</td>
+                    <td class="tdName" th:text="${'Название:'}">VALUE</td>
                     <td th:text="${tool.getName()}">Value</td>
                 </tr>
                 <tr>
-                    <td th:text="${'Изготовитель:'}">VALUE</td>
+                    <td class="tdName" th:text="${'Изготовитель:'}">VALUE</td>
                     <td th:text="${tool.getManufacturer()}">Value</td>
                 </tr>
                 </tbody>
@@ -51,6 +51,7 @@
 
 <footer th:replace="~{base :: footer}"></footer>
 
+<script type="text/javascript" th:src="@{/js/deleteConfirm.js}"></script>
 
 </body>
 </html>

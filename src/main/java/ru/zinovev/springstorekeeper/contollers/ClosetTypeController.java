@@ -54,13 +54,14 @@ public class ClosetTypeController {
     }
 
     @PatchMapping("/{id}")
-    public String updateClosetType(@ModelAttribute("closetType") @Valid ClosetType closetType, BindingResult bindingResult,
+    public String updateClosetType(Model model, @ModelAttribute("closetType") @Valid ClosetType closetType, BindingResult bindingResult,
                                    @PathVariable("id") int id) {
         if (bindingResult.hasErrors())
             return "closettype/edit";
 
         closetTypeService.updateClosetType(id, closetType);
-        return "redirect:/closettype/{id}";
+        model.addAttribute("closetType", closetTypeService.findOne(id));
+        return "/closettype/showone";
     }
 
     @DeleteMapping("/{id}")

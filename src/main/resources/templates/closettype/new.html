@@ -3,34 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Новый тип</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 
-<div>
-    <a th:href="@{/closettype}">Вернуться назад</a>
+<header th:replace="~{base :: header}"></header>
+
+<div class="mainContent" th:block="content">
+    <div class="titleMainContent">
+        <p>Новый тип</p>
+    </div>
+
+    <div class="centerContent">
+        <div class="buttonNav">
+            <a th:href="@{/closettype}">Вернуться назад</a>
+        </div>
+
+        <div class="listContent">
+            <form th:method="POST" th:action="@{/closettype}" th:object="${closetType}">
+                <div class="formLine">
+                    <label class="formLabel" for="name">Название: </label>
+                    <input class="formInputText" type="text" th:field="*{name}" id="name"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                </div>
+
+                <div class="formLine">
+                    <label class="formLabel" for="shelves">Количество полок: </label>
+                    <input class="formInputText" type="text" th:field="*{shelves}" id="shelves"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('shelves')}" th:errors="*{shelves}">Shelves Error</div>
+                </div>
+
+                <div class="formLine">
+                    <label class="formLabel" for="cellsForShelf">Количество ячеек на полку: </label>
+                    <input class="formInputText" type="text" th:field="*{cellsForShelf}" id="cellsForShelf"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('cellsForShelf')}" th:errors="*{getCellsForShelf}">CellsForShelf Error</div>
+                </div>
+
+                <div class="formLine">
+                    <label class="formLabel" for="capacity">Общая вместимость: (на данный момент должна быть равна произведению количества полок на количество ячеек) </label>
+                    <input class="formInputText" type="text" th:field="*{capacity}" id="capacity"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}">capacity Error</div>
+                </div>
+
+                <div class="buttonEdit">
+                    <input class="formButton" type="submit" value="Создать"/>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-<br/>
-<hr/>
-<div align="center">
-    <form th:method="POST" th:action="@{/closettype}" th:object="${closetType}">
-        <label for="name">Введите название: </label>
-        <input type="text" th:field="*{name}" id="name"/>
-        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
-        <br/>
-        <label for="shelves">Введите количество полок: </label>
-        <input type="text" th:field="*{shelves}" id="shelves"/>
-        <div style="color:red" th:if="${#fields.hasErrors('shelves')}" th:errors="*{shelves}">shelves Error</div>
-        <br/>
-        <label for="cellsForShelf">Введите количество ячеек на полку: </label>
-        <input type="text" th:field="*{cellsForShelf}" id="cellsForShelf"/>
-        <div style="color:red" th:if="${#fields.hasErrors('cellsForShelf')}" th:errors="*{getCellsForShelf}">cellsForShelf Error</div>
-        <br/>
-        <label for="capacity">Введите общую вместимость: </label>
-        <input type="text" th:field="*{capacity}" id="capacity"/>
-        <div style="color:red" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}">capacity Error</div>
-        <br/>
-        <input type="submit" value="Создать"/>
-    </form>
-</div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
 </body>
 </html>

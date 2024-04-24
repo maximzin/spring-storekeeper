@@ -128,10 +128,12 @@ footer {
     margin-left: auto;
     margin-right: auto;
     padding: 2px;
+    display: flex;
+    align-items: flex-start;
 }
 
 .formLabel {
-    width: 180px;
+    width: 200px;
     display: inline-block;
     text-align: right;
 }
@@ -141,6 +143,7 @@ footer {
     width: 200px;
     border-radius: 5px;
     border: 2px solid grey;
+    margin-left: 10px;
 }
 
 .formButton {
@@ -212,6 +215,10 @@ footer {
 
 .tableBody {
     width: 400px;
+}
+
+.tdName {
+    width: 200px;
 }
 
 .tableMain tr {

@@ -53,13 +53,14 @@ public class ToolController {
     }
 
     @PatchMapping("/{id}")
-    public String updateTool(@ModelAttribute("tool") @Valid Tool tool, BindingResult bindingResult,
+    public String updateTool(Model model, @ModelAttribute("tool") @Valid Tool tool, BindingResult bindingResult,
                          @PathVariable("id") int id) {
         if (bindingResult.hasErrors())
             return "tool/edit";
 
         toolService.updateTool(id, tool);
-        return "redirect:/tool";
+        model.addAttribute("tool", toolService.findOne(id));
+        return "/tool/showone";
     }
 
     @DeleteMapping("/{id}")
