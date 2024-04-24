@@ -157,11 +157,21 @@ footer {
     padding: 2px;
 }
 
+.formButtonHidden {
+    background: transparent;
+    border: none;
+    font-size:0;
+}
+
 .formButton:hover {
     color: #ffffff;
     background: #246ff5b8;
     border-radius: 6px;
     padding: 2px;
+}
+
+.formHidden {
+    height: 0;
 }
 
 .centerContent {

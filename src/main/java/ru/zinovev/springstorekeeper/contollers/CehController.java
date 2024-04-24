@@ -57,13 +57,14 @@ public class CehController {
     }
 
     @PatchMapping("/{id}")
-    public String updateCeh(@ModelAttribute("ceh") @Valid Ceh ceh, BindingResult bindingResult,
+    public String updateCeh(Model model, @ModelAttribute("ceh") @Valid Ceh ceh, BindingResult bindingResult,
                          @PathVariable("id") int id) {
         if (bindingResult.hasErrors())
             return "ceh/edit";
 
         cehService.updateCeh(id, ceh);
-        return "redirect:/ceh/{id}";
+        model.addAttribute("ceh", cehService.findOne(id));
+        return "/ceh/showone";
     }
 
     @DeleteMapping("/{id}")

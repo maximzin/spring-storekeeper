@@ -50,8 +50,9 @@
         <div class="buttonEdit">
             <a th:href="@{/closettype/{id}/edit(id=${closetType.getId()})}">Редактировать тип</a>
             <hr>
-            <form th:method="DELETE" th:action="@{/closettype/{id}(id=${closetType.getId()})}">
-                <input class="formButton" type="submit" value="Удалить тип"/>
+            <button class="formButton">Удалить тип</button>
+            <form class="formHidden" th:method="DELETE" th:action="@{/closettype/{id}(id=${closetType.getId()})}">
+                <input class="formButtonHidden" type="submit" value="Удалить тип"/>
             </form>
         </div>
     </div>
