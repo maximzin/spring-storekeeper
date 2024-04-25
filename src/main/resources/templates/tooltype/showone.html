@@ -37,7 +37,8 @@
 
         <div class="buttonEdit">
             <a th:href="@{/tooltype/{id}/edit(id=${toolType.getId()})}">Редактировать тип</a>
-            <hr>
+            <br>
+            <br>
             <button id="btnPressed" class="formButton">Удалить тип</button>
             <form class="formHidden" th:method="DELETE" th:action="@{/tooltype/{id}(id=${toolType.getId()})}">
                 <input id="btnHidden" class="formButtonHidden" type="submit" value="Удалить тип"/>

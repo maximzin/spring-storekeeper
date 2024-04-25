@@ -92,14 +92,14 @@ footer {
     text-decoration: none;
     border: 2px solid transparent;
     box-sizing: border-box;
-    padding: 2px;
+    padding: 1px;
 }
 
 .mainContent a:hover {
     color: #ffffff;
     background: #246ff5b8;
     border-radius: 6px;
-    padding: 2px;
+    padding: 1px;
 }
 
 .titleMainContent {
@@ -161,7 +161,7 @@ footer {
     text-decoration: none;
     border: 2px solid transparent;
     box-sizing: border-box;
-    padding: 2px 2px 18px 2px;
+    padding: 1px 1px 18px 1px;
     display: inline-block;
 }
 
