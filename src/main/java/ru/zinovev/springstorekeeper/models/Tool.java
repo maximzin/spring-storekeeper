@@ -17,6 +17,11 @@ public class Tool {
     @Setter
     private int id;
 
+    @Column(name = "id_type")
+    @Getter
+    @Setter
+    private int idType;
+
     @NotEmpty
     @Size(min = 1, max = 50, message = "Название должно содержать от 1 до 50 символов")
     @Column(name = "name")
@@ -36,5 +41,11 @@ public class Tool {
         this.name = name;
         this.manufacturer = manufacturer;
     }
+
+    @OneToOne
+    @JoinColumn(name = "id_type", referencedColumnName = "id", insertable=false, updatable=false)
+    @Getter
+    @Setter
+    private ToolType toolType;
 
 }

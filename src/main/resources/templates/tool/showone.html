@@ -32,6 +32,10 @@
                     <td th:text="${tool.getName()}">Value</td>
                 </tr>
                 <tr>
+                    <td class="tdName" th:text="${'Тип:'}">VALUE</td>
+                    <td th:text="${tool.toolType.getName()}">Value</td>
+                </tr>
+                <tr>
                     <td class="tdName" th:text="${'Изготовитель:'}">VALUE</td>
                     <td th:text="${tool.getManufacturer()}">Value</td>
                 </tr>

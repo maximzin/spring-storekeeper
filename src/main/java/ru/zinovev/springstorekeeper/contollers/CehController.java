@@ -63,8 +63,7 @@ public class CehController {
             return "ceh/edit";
 
         cehService.updateCeh(id, ceh);
-        model.addAttribute("ceh", cehService.findOne(id));
-        return "/ceh/showone";
+        return "redirect:/ceh/{id}";
     }
 
     @DeleteMapping("/{id}")

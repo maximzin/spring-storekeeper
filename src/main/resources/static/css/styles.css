@@ -64,15 +64,16 @@ footer {
     bottom: 0;
     width: 100%;
     color: #fff;
-    padding: 1rem;
+    height: 50px;
 }
 
 .footer-container {
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer-container p {
-    margin: 0;
     color: #ffffff73;
 }
 
@@ -139,6 +140,13 @@ footer {
 
 .formInputText {
     width: 200px;
+    border-radius: 5px;
+    border: 2px solid grey;
+    margin-left: 10px;
+}
+
+.formSelect {
+    width: 207px;
     border-radius: 5px;
     border: 2px solid grey;
     margin-left: 10px;

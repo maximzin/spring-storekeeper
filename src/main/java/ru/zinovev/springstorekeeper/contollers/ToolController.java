@@ -6,8 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.zinovev.springstorekeeper.models.ClosetType;
 import ru.zinovev.springstorekeeper.models.Tool;
+import ru.zinovev.springstorekeeper.models.ToolType;
 import ru.zinovev.springstorekeeper.services.ToolService;
+import ru.zinovev.springstorekeeper.services.ToolTypeService;
 
 @Controller
 @RequestMapping("/tool")
@@ -15,9 +18,12 @@ public class ToolController {
 
     private final ToolService toolService;
 
+    private final ToolTypeService toolTypeService;
+
     @Autowired
-    public ToolController(ToolService toolService) {
+    public ToolController(ToolService toolService, ToolTypeService toolTypeService ) {
         this.toolService = toolService;
+        this.toolTypeService = toolTypeService;
     }
 
     @GetMapping()
@@ -33,7 +39,9 @@ public class ToolController {
     }
 
     @GetMapping("/new")
-    public String newTool(@ModelAttribute("tool") Tool tool) {
+    public String newTool(Model model, @ModelAttribute("tool") Tool tool,
+                          @ModelAttribute("type") ToolType toolType) {
+        model.addAttribute("types", toolTypeService.findAll());
         return "tool/new";
     }
 
@@ -47,8 +55,10 @@ public class ToolController {
     }
 
     @GetMapping("/{id}/edit")
-    public String editTool(Model model, @PathVariable("id") int id) {
+    public String editTool(Model model, @PathVariable("id") int id,
+                           @ModelAttribute("type") ToolType toolType) {
         model.addAttribute("tool", toolService.findOne(id));
+        model.addAttribute("types", toolTypeService.findAll());
         return "tool/edit";
     }
 
@@ -59,8 +69,7 @@ public class ToolController {
             return "tool/edit";
 
         toolService.updateTool(id, tool);
-        model.addAttribute("tool", toolService.findOne(id));
-        return "/tool/showone";
+        return "redirect:/tool/{id}";
     }
 
     @DeleteMapping("/{id}")

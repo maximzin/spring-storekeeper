@@ -60,8 +60,7 @@ public class ClosetTypeController {
             return "closettype/edit";
 
         closetTypeService.updateClosetType(id, closetType);
-        model.addAttribute("closetType", closetTypeService.findOne(id));
-        return "/closettype/showone";
+        return "redirect:/closettype/{id}";
     }
 
     @DeleteMapping("/{id}")

@@ -28,6 +28,14 @@
                 </div>
 
                 <div class="formLine">
+                <label class="formLabel" for="id_type">Выберите тип: </label>
+                <select class="formSelect" th:object="${tool}" th:field="*{idType}" id="id_type">
+                    <option th:each="type : ${types}" th:value="${type.getId()}" th:text="${type.getName()}">
+                    </option>
+                </select>
+                </div>
+
+                <div class="formLine">
                 <label class="formLabel" for="manufacturer">Изготовитель: </label>
                 <input class="formInputText" type="text" th:field="*{manufacturer}" id="manufacturer"/>
                 <div style="color:red" th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}">Name Error</div>
