@@ -21,7 +21,7 @@
         </div>
 
         <div class="listContent">
-            <form th:method="PATCH" th:action="@{/closet/{id}(id=${closet.getId()})}" th:object="${closet}">
+            <form th:method="PATCH" th:action="@{/closet/{id}(id=${closet.getId()})}" th:object="${currCloset}">
                 <div class="formLine">
                     <label class="formLabel" for="name">Название: </label>
                     <input class="formInputText" type="text" th:field="*{name}" id="name"/>
@@ -36,7 +36,7 @@
 
                 <div class="formLine">
                     <label class="formLabel" for="id_ceh">Выберите цех: </label>
-                    <select class="formSelect" th:object="${closet}" th:field="*{idCeh}" id="id_ceh">
+                    <select class="formSelect" th:object="${currCloset}" th:field="*{idCeh}" id="id_ceh">
                         <option th:each="ceh : ${cehs}" th:value="${ceh.getId()}" th:text="${ceh.getName()}">
                         </option>
                     </select>

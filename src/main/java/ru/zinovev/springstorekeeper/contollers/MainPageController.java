@@ -10,9 +10,14 @@ import ru.zinovev.springstorekeeper.services.UserService;
 @RequestMapping("/")
 public class MainPageController {
 
+    private final UserService userService;
+
+    public MainPageController(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping()
     public String begin() {
-
         return "mainpage";
     }
 
