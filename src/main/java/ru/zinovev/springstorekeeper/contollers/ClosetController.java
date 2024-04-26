@@ -150,12 +150,14 @@ public class ClosetController {
                                 @PathVariable("num_cell") int num_cell,
                                 @ModelAttribute("cellAndTools") @Valid CellAndTools cellAndTools,
                              BindingResult bindingResult) {
-        model.addAttribute("closet", closetService.findOne(id));
-        Cell needCell = cellService.findOne(id, num_cell);
-        model.addAttribute("cellAndTools", cellAndToolsService.findByIdCell(needCell.getId()));
+        model.addAttribute("cell", cellService.findOne(id, num_cell));
+        model.addAttribute("tools", toolService.findAll());
         if (bindingResult.hasErrors())
             return "closet/addtool";
         cellAndToolsService.saveCellAndTools(cellAndTools);
-        return "closet/showcell";
+        model.addAttribute("closet", closetService.findOne(id));
+        Cell needCell = cellService.findOne(id, num_cell);
+        model.addAttribute("cellAndTools", cellAndToolsService.findByIdCell(needCell.getId()));
+        return "redirect:/closet/{id}/cell/{num_cell}";
     }
 }

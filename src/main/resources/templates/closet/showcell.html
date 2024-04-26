@@ -34,9 +34,8 @@
                     <td th:text="${toolCount.count}">Value</td>
                     <td th:text="${cellAndTool.getIdTool()}">Value</td>
                     <td th:text="${cellAndTool.getCount()}">Value</td>
-                    <td><button id="btnPressed" class="formButton">Удалить</button>
-                        <form class="formHidden" th:method="DELETE" th:action="@{/closet/{id}/cell/{num_cell}/{id_cellAndTool}(id=${closet.getId()}, num_cell=${num_cell}, id_cellAndTool=${cellAndTool.getId()})}">
-                            <input id="btnHidden" class="formButtonHidden" type="submit" value="Удалить"/>
+                    <td><form th:method="DELETE" th:action="@{/closet/{id}/cell/{num_cell}/{id_cellAndTool}(id=${closet.getId()}, num_cell=${num_cell}, id_cellAndTool=${cellAndTool.getId()})}">
+                            <input id="btnPressed" class="formButton" type="submit" value="Удалить"/>
                         </form>
                     </td>
                 </tr>
@@ -54,8 +53,6 @@
 </div>
 
 <footer th:replace="~{base :: footer}"></footer>
-
-<script type="text/javascript" th:src="@{/js/deleteConfirm.js}"></script>
 
 </body>
 </html>
