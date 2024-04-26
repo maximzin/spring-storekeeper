@@ -24,26 +24,26 @@
                 <div class="formLine">
                     <label class="formLabel" for="name">Название: </label>
                     <input class="formInputText" type="text" th:field="*{name}" id="name"/>
-                    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
                 </div>
+                <div class="errors" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
 
                 <div class="formLine">
                     <label class="formLabel" for="shelves">Количество полок: </label>
                     <input class="formInputText" type="text" th:field="*{shelves}" id="shelves" oninput="calculate()"/>
-                    <div style="color:red" th:if="${#fields.hasErrors('shelves')}" th:errors="*{shelves}">Shelves Error</div>
                 </div>
+                <div class="errors" th:if="${#fields.hasErrors('shelves')}" th:errors="*{shelves}">Shelves Error</div>
 
                 <div class="formLine">
                     <label class="formLabel" for="cellsForShelf">Количество ячеек на полку: </label>
                     <input class="formInputText" type="text" th:field="*{cellsForShelf}" id="cellsForShelf" oninput="calculate()"/>
-                    <div style="color:red" th:if="${#fields.hasErrors('cellsForShelf')}" th:errors="*{getCellsForShelf}">CellsForShelf Error</div>
                 </div>
+                <div class="errors" th:if="${#fields.hasErrors('cellsForShelf')}" th:errors="*{cellsForShelf}">cellsForShelf Error</div>
 
                 <div class="formLine">
                     <label class="formLabel" for="capacity">Общая вместимость: (на данный момент должна быть равна произведению количества полок на количество ячеек) </label>
                     <input readonly class="formInputText" type="text" th:field="*{capacity}" id="capacity"/>
-                    <div style="color:red" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}">capacity Error</div>
                 </div>
+                <div class="errors" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}">capacity Error</div>
 
                 <div class="buttonEdit">
                     <input class="formButton" type="submit" value="Создать"/>

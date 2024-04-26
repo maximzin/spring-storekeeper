@@ -25,26 +25,26 @@
                 <div class="formLine">
                     <label class="formLabel" for="name">Название: </label>
                     <input class="formInputText" type="text" th:field="*{name}" id="name"/>
-                    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
                 </div>
+                <div class="errors" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
 
                 <div class="formLine">
-                    <label class="formLabel" for="shelves">Введите количество полок: </label>
-                    <input class="formInputText" type="text" th:field="*{shelves}" id="shelves"/>
-                    <div style="color:red" th:if="${#fields.hasErrors('shelves')}" th:errors="*{shelves}">shelves Error</div>
+                    <label class="formLabel" for="shelves">Изменять кол-во полок нельзя: </label>
+                    <input readonly class="formInputText" type="text" th:field="*{shelves}" th:value="${closetType.getShelves()}" id="shelves"/>
                 </div>
+                <div class="errors" th:if="${#fields.hasErrors('shelves')}" th:errors="*{shelves}">shelves Error</div>
 
                 <div class="formLine">
-                    <label class="formLabel" for="cellsForShelf">Введите количество ячеек на полку: </label>
-                    <input class="formInputText" type="text" th:field="*{cellsForShelf}" id="cellsForShelf"/>
-                    <div style="color:red" th:if="${#fields.hasErrors('cellsForShelf')}" th:errors="*{cellsForShelf}">cellsForShelf Error</div>
+                    <label class="formLabel" for="cellsForShelf">Изменять кол-во ячеек на полку нельзя: </label>
+                    <input readonly class="formInputText" type="text" th:field="*{cellsForShelf}" th:value="${closetType.getCellsForShelf()}" id="cellsForShelf"/>
                 </div>
+                <div class="errors" th:if="${#fields.hasErrors('cellsForShelf')}" th:errors="*{cellsForShelf}">cellsForShelf Error</div>
 
                 <div class="formLine">
-                    <label class="formLabel" for="capacity">Введите общую вместимость: (на данный момент должна быть равна произведению количества полок на количество ячеек) </label>
-                    <input class="formInputText" type="text" th:field="*{capacity}" id="capacity"/>
-                    <div style="color:red" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}">capacity Error</div>
+                    <label class="formLabel" for="capacity">Изменять общую вместимость нельзя: </label>
+                    <input readonly class="formInputText" type="text" th:field="*{capacity}" th:value="${closetType.getCapacity()}" id="capacity"/>
                 </div>
+                <div class="errors" th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}">capacity Error</div>
 
                 <div class="buttonEdit">
                     <input class="formButton" type="submit" value="Обновить"/>

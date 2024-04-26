@@ -2,38 +2,60 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Все шкафы</title>
+    <title>Страница ячейки</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 
-<div>
-    <a th:href="@{/closet/{id}(id=${closet.getId()})}">Вернуться назад</a>
-</div>
-<br/>
-<hr/>
+<header th:replace="~{base :: header}"></header>
 
-<div align="center">
-    <table>
-        <thead class="thead-dark">
-        <tr>
-            <th>Инструмент</th>
-            <th>Количество</th>
-            <th>Фукнция</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="cellAndTool : ${cellAndTools}">
-            <td th:text="${cellAndTool.getTool().getName()}">Value</td>
-            <td th:text="${cellAndTool.getCount()}">Value</td>
-            <td><form th:method="DELETE" th:action="@{/closet/{id}/cell/{id_cell}(id=${closet.getId()}, id_cell=${cellAndTool.getId()})}">
-                <input type="submit" value="Удалить"/>
-            </form></td>
-        </tr>
-        </tbody>
-    </table>
-    <br/>
-    <a th:href="@{/closet/{id}/cell/{num_cell}/addtool(id=${id}, num_cell=${num_cell})}">Добавить инструмент</a>
+<div class="mainContent" th:block="content">
+    <div class="titleMainContent">
+        <p th:text="'Ячейка: ' + ${num_cell}">Value</p>
+    </div>
+
+    <div class="centerContent">
+        <div class="buttonNav">
+            <a th:href="@{/closet/{id}(id=${closet.getId()})}">Вернуться назад</a>
+        </div>
+
+        <div class="listContent">
+            <table class="tableMain">
+                <thead class="tableHead">
+                <tr>
+                    <th>No.</th>
+                    <th>Инструмент</th>
+                    <th>Количество</th>
+                    <th>Действие</th>
+                </tr>
+                </thead>
+                <tbody class="tableBody">
+                <tr th:each="cellAndTool, toolCount : ${cellAndTools}">
+                    <td th:text="${toolCount.count}">Value</td>
+                    <td th:text="${cellAndTool.getIdTool()}">Value</td>
+                    <td th:text="${cellAndTool.getCount()}">Value</td>
+                    <td><button id="btnPressed" class="formButton">Удалить</button>
+                        <form class="formHidden" th:method="DELETE" th:action="@{/closet/{id}/cell/{num_cell}/{id_cellAndTool}(id=${closet.getId()}, num_cell=${num_cell}, id_cellAndTool=${cellAndTool.getId()})}">
+                            <input id="btnHidden" class="formButtonHidden" type="submit" value="Удалить"/>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="buttonEdit">
+            <a th:href="@{/closet/{id}/cell/{num_cell}/addtool(id=${id}, num_cell=${num_cell})}">Добавить инструмент</a>
+            <br>
+            <br>
+            <a th:href="@{/closet/{id}/cell/{num_cell}/addtool(id=${id}, num_cell=${num_cell})}">Открыть ячейку</a>
+        </div>
+    </div>
 </div>
+
+<footer th:replace="~{base :: footer}"></footer>
+
+<script type="text/javascript" th:src="@{/js/deleteConfirm.js}"></script>
 
 </body>
 </html>

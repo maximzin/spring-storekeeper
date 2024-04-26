@@ -19,7 +19,7 @@ public class ClosetType {
     @Setter
     private int id;
 
-    @NotEmpty
+    @NotEmpty(message = "Название не должно быть пустым")
     @Size(min = 1, max = 50, message = "Название должно содержать от 1 до 50 символов")
     @Column(name = "name")
     @Getter
@@ -41,7 +41,7 @@ public class ClosetType {
     private int cellsForShelf;
 
     @Min(value = 1, message = "Количество ячеек не может быть равно 0")
-    @Max(value = 1001, message = "Количество ячеек более 1000")
+    @Max(value = 1001, message = "Количество ячеек не может быть более 1000")
     @Column(name = "capacity")
     @Getter
     @Setter

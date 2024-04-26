@@ -1,6 +1,8 @@
 package ru.zinovev.springstorekeeper.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +27,8 @@ public class CellAndTools {
     @Setter
     private int idTool;
 
+    @Min(value = 1, message = "Количество не может быть равно 0")
+    @Max(value = 100, message = "Количество не может быть более 100")
     @Column(name = "count")
     @Getter
     @Setter

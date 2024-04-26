@@ -67,8 +67,10 @@ public class ClosetController {
     }
 
     @PostMapping()
-    public String createCloset(@ModelAttribute("closet") @Valid Closet closet,
+    public String createCloset(Model model, @ModelAttribute("closet") @Valid Closet closet,
                                    BindingResult bindingResult) {
+        model.addAttribute("types", closetTypeService.findAll());
+        model.addAttribute("cehs", cehService.findAll());
         if (bindingResult.hasErrors())
             return "closet/new";
         int capacity = closetTypeService.getCapacity(closet.getIdType());
@@ -81,15 +83,18 @@ public class ClosetController {
                              @ModelAttribute("type") ClosetType closetType,
                              @ModelAttribute("ceh") Ceh ceh,
                              @PathVariable("id") int id) {
-        model.addAttribute("closet", closetService.findOne(id));
+        model.addAttribute("currCloset", closetService.findOne(id));
         model.addAttribute("types", closetTypeService.findAll());
         model.addAttribute("cehs", cehService.findAll());
         return "closet/edit";
     }
 
     @PatchMapping("/{id}")
-    public String updateCloset(@ModelAttribute("closet") @Valid Closet closet, BindingResult bindingResult,
+    public String updateCloset(Model model, @ModelAttribute("closet") @Valid Closet closet, BindingResult bindingResult,
                                    @PathVariable("id") int id) {
+        model.addAttribute("currCloset", closetService.findOne(id));
+        model.addAttribute("types", closetTypeService.findAll());
+        model.addAttribute("cehs", cehService.findAll());
         if (bindingResult.hasErrors())
             return "closet/edit";
 
@@ -116,11 +121,17 @@ public class ClosetController {
         return "closet/showcell";
     }
 
-    @DeleteMapping("/{id}/cell/{id_cell}")
-    public String deleteCellAndTool(@PathVariable("id") int id,
-                                    @PathVariable("id_cell") int id_cell) {
-        cellAndToolsService.deleteCellAndTools(id_cell);
-        return "redirect:/closet/{id}";
+    @DeleteMapping("/{id}/cell/{num_cell}/{id_cellAndTool}")
+    public String deleteCellAndTool(Model model, @PathVariable("id") int id,
+                                    @PathVariable("num_cell") int num_cell,
+                                    @PathVariable("id_cellAndTool") int id_cellAndTool) {
+        cellAndToolsService.deleteCellAndTools(id_cellAndTool);
+        model.addAttribute("cell", cellService.findOne(id, num_cell));
+        model.addAttribute("tools", toolService.findAll());
+        model.addAttribute("closet", closetService.findOne(id));
+        Cell needCell = cellService.findOne(id, num_cell);
+        model.addAttribute("cellAndTools", cellAndToolsService.findByIdCell(needCell.getId()));
+        return "closet/showcell";
     }
 
     @GetMapping("/{id}/cell/{num_cell}/addtool")
@@ -134,14 +145,17 @@ public class ClosetController {
         return "closet/addtool";
     }
 
-    @PostMapping("/{id}/cell/{num_cell}/addtool")
-    public String addToolToCell(@PathVariable("id") int id,
+    @PostMapping("/{id}/cell/{num_cell}")
+    public String addToolToCell(Model model, @PathVariable("id") int id,
                                 @PathVariable("num_cell") int num_cell,
                                 @ModelAttribute("cellAndTools") @Valid CellAndTools cellAndTools,
                              BindingResult bindingResult) {
+        model.addAttribute("closet", closetService.findOne(id));
+        Cell needCell = cellService.findOne(id, num_cell);
+        model.addAttribute("cellAndTools", cellAndToolsService.findByIdCell(needCell.getId()));
         if (bindingResult.hasErrors())
             return "closet/addtool";
         cellAndToolsService.saveCellAndTools(cellAndTools);
-        return "redirect:/closet/{id}";
+        return "closet/showcell";
     }
 }

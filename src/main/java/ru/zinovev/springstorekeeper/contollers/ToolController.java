@@ -46,8 +46,9 @@ public class ToolController {
     }
 
     @PostMapping()
-    public String createTool(@ModelAttribute("tool") @Valid Tool tool,
+    public String createTool(Model model, @ModelAttribute("tool") @Valid Tool tool,
                          BindingResult bindingResult) {
+        model.addAttribute("types", toolTypeService.findAll());
         if (bindingResult.hasErrors())
             return "tool/new";
         toolService.saveTool(tool);

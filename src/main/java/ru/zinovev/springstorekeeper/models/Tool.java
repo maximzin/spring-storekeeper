@@ -22,14 +22,14 @@ public class Tool {
     @Setter
     private int idType;
 
-    @NotEmpty
+    @NotEmpty(message = "Название не должно быть пустым")
     @Size(min = 1, max = 50, message = "Название должно содержать от 1 до 50 символов")
     @Column(name = "name")
     @Getter
     @Setter
     private String name;
 
-    @Size(min = 1, max = 100, message = "Название должно содержать от 1 до 50 символов")
+    @Size(min = 1, max = 100, message = "Название изготовителя должно содержать от 1 до 100 символов")
     @Column(name = "manufacturer")
     @Getter
     @Setter
