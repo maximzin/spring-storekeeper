@@ -47,12 +47,55 @@
             <a th:href="@{/closet/{id}/cell/{num_cell}/addtool(id=${id}, num_cell=${num_cell})}">Добавить инструмент</a>
             <br>
             <br>
-            <a th:href="@{/closet/{id}/cell/{num_cell}(id=${id}, num_cell=${num_cell})}">Открыть ячейку</a>
+            <button class="formButton" onclick="connectToPort()">Подключиться к порту</button>
+            <br>
+            <br>
+            <button class="formButton" onclick="sendCommand()">Отправить команду</button>
         </div>
     </div>
 </div>
 
 <footer th:replace="~{base :: footer}"></footer>
+
+<script>
+    let port;
+
+    async function connectToPort() {
+        try {
+            port = await navigator.serial.requestPort();
+            await port.open({ baudRate: 2400 });
+            console.log('Порт открыт:', port);
+            port.addEventListener('data', handleData);
+        } catch (error) {
+            console.error('Ошибка при открытии порта:', error);
+        }
+    }
+
+    async function sendCommand() {
+        const writer = port.writable.getWriter();
+        const data = new Uint8Array([130, 0, 1, 0, 0]);
+        await writer.write(data);
+        console.log('Отправлено на устройство:', data);
+        writer.releaseLock();
+
+        const reader = port.readable.getReader();
+        while (true) {
+            const { value, done } = await reader.read();
+            if (done) {
+                reader.releaseLock();
+                break;
+            }
+            console.log(value);
+        }
+    }
+
+    function handleData(event) {
+        const receivedData = new TextDecoder().decode(event.data);
+        const consoleOutput = document.getElementById('console');
+        consoleOutput.textContent += receivedData + '\n';
+    }
+</script>
+
 
 </body>
 </html>
