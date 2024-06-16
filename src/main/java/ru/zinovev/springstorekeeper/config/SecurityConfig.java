@@ -40,8 +40,9 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
 
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/login").permitAll()
-                        .anyRequest().authenticated())
+                        ///.requestMatchers("/login").permitAll()
+                        ///.anyRequest().authenticated())
+                        .anyRequest().permitAll())
 
                 .httpBasic(withDefaults())
                 .formLogin(formLogin -> formLogin.loginPage("/login").permitAll())
